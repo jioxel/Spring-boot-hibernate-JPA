@@ -19,7 +19,13 @@ public class ClienteDaoImpl implements IClienteDao{
      @Transactional(readOnly = true) //indicamos que solo es para consulta, solo lectura
      @Override
      public List<Cliente> findAll() {
-          return em.createNamedQuery("from Cliente").getResultList();
+          return em.createQuery("from Cliente").getResultList();
+     }
+
+     @Override
+     @Transactional
+     public void save(Cliente cliente) {
+          em.persist(cliente); //lo guarda dentro del contexto de persistencia
      }
      
 }

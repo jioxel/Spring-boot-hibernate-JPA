@@ -15,7 +15,7 @@ import jakarta.persistence.TemporalType;
 @Entity
 @Table(name = "clientes") //indica el nombre de la tabla
 public class Cliente implements Serializable{
-     
+
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrementable
      private Long id;
@@ -26,7 +26,7 @@ public class Cliente implements Serializable{
 
      @Column(name = "create_at") //Indica el nombre de la columna de la tabla
      @Temporal(TemporalType.DATE) //formato de como se va a guardar
-     private Date creareAt;
+     private Date createAt;
 
      private static final long serialVersionUID = 1L;
 
@@ -62,12 +62,12 @@ public class Cliente implements Serializable{
           this.email = email;
      }
 
-     public Date getCreareAt() {
-          return creareAt;
+     public Date getCreateAt() {
+          return createAt;
      }
 
-     public void setCreareAt(Date creareAt) {
-          this.creareAt = creareAt;
+     public void setCreateAt(Date creareAt) {
+          this.createAt = creareAt;
      }
 
      public static long getSerialversionuid() {
