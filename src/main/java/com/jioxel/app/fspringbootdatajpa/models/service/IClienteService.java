@@ -1,10 +1,12 @@
-package com.jioxel.app.fspringbootdatajpa.models.dao;
+package com.jioxel.app.fspringbootdatajpa.models.service;
 
 import java.util.List;
 
+
 import com.jioxel.app.fspringbootdatajpa.models.entity.Cliente;
 
-public interface IClienteDao {
+
+public interface IClienteService {
      public List<Cliente> findAll();
      public void save(Cliente cliente);
      public Cliente findOne(Long id);

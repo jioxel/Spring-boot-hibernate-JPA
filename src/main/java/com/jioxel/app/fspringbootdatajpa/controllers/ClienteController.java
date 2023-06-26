@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.jioxel.app.fspringbootdatajpa.models.dao.IClienteDao;
 import com.jioxel.app.fspringbootdatajpa.models.entity.Cliente;
+import com.jioxel.app.fspringbootdatajpa.models.service.IClienteService;
 
 import jakarta.validation.Valid;
 
@@ -27,13 +27,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ClienteController {
 
      @Autowired
-     @Qualifier("clienteDaoJPA")
-     private IClienteDao clienteDao;
+     private IClienteService clienteService;
 
      @RequestMapping(value = "listar",method = RequestMethod.GET)
      public String listar(Model model){
           model.addAttribute("title", "Listado de clientes");
-          model.addAttribute("clientes", clienteDao.findAll());
+          model.addAttribute("clientes", clienteService.findAll());
           return "listar";
      }
 
@@ -49,7 +48,7 @@ public class ClienteController {
      public String editar(@PathVariable(value="id") Long id, Model model){
           Cliente cliente = null;
           if(id>0){
-               cliente = clienteDao.findOne(id);
+               cliente = clienteService.findOne(id);
           }else{
                return "redirect:/listar";
           }
@@ -57,15 +56,21 @@ public class ClienteController {
           model. addAttribute("cliente", cliente);
           return "form";
      }
-     @PostMapping(value="/form")
+     @PostMapping("/form")
      public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status) {
           if(result.hasErrors()){
                model.addAttribute("title", "Formulario de Cliente");
                return "form";
           }
-          clienteDao.save(cliente);
+          clienteService.save(cliente);
           status.setComplete();
           return "redirect:listar";
      }
-     
+     @GetMapping("/eliminar/{id}")
+     public String eliminar(@PathVariable(value="id") Long id){
+          if(id > 0){
+               clienteService.delete(id);
+          }
+          return "redirect:/listar";
+     }
 }
