@@ -3,7 +3,6 @@ package com.jioxel.app.fspringbootdatajpa.models.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.jioxel.app.fspringbootdatajpa.models.entity.Cliente;
 
@@ -21,7 +20,7 @@ public class ClienteDaoImpl implements IClienteDao{
      public List<Cliente> findAll() {
           return em.createQuery("from Cliente").getResultList();
      }
-     
+
      @Override
      public Cliente findOne(Long id) {
           return em.find(Cliente.class,id); 
