@@ -18,7 +18,7 @@ public class ClienteServiceImpl implements IClienteService {
      @Transactional(readOnly = true) //indicamos que solo es para consulta, solo lectura
      public List<Cliente> findAll() {
           // TODO Auto-generated method stub
-          return clienteDao.findAll();
+          return (List<Cliente>) clienteDao.findAll();
      }
 
      @Override
@@ -30,13 +30,13 @@ public class ClienteServiceImpl implements IClienteService {
      @Override
      @Transactional(readOnly = true) //indicamos que solo es para consulta, solo lectura
      public Cliente findOne(Long id) {
-          return clienteDao.findOne(id);
+          return clienteDao.findById(id).orElse(null);
      }
 
      @Override
      @Transactional //indicamos que solo es para consulta, solo lectura
      public void delete(Long id) {
-          clienteDao.delete(id);
+          clienteDao.deleteById(id);
      }
      
 }
