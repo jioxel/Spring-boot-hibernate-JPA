@@ -1,56 +1,24 @@
-Para descargar e instalar Apache Tomcat 7 en tu máquina Ubuntu y utilizarlo como servidor en Eclipse, puedes seguir los siguientes pasos:
+Apache
 
-Abre una terminal en tu máquina Ubuntu.
+https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.82/
+extraerlo
 
-Descarga Apache Tomcat 7 desde el sitio web oficial de Apache. Puedes utilizar el siguiente comando para descargarlo directamente desde la terminal:
+sudo mv apache-tomcat-7.0.82 /opt/
 
-shell
-Copy code
-wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.110/bin/apache-tomcat-7.0.110.tar.gz
-Esto descargará el archivo apache-tomcat-7.0.110.tar.gz en tu directorio actual.
-
-Extrae el contenido del archivo descargado utilizando el siguiente comando:
-
-shell
-Copy code
-tar -xvf apache-tomcat-7.0.110.tar.gz
-Esto creará un directorio llamado apache-tomcat-7.0.110 en tu directorio actual.
-
-Mueve el directorio de Tomcat a un lugar adecuado en tu sistema. Por ejemplo, puedes moverlo al directorio /opt utilizando el siguiente comando:
-
-shell
-Copy code
-sudo mv apache-tomcat-7.0.110 /opt/
-Esto requerirá permisos de superusuario, por lo que se te solicitará tu contraseña.
-
-Configura las variables de entorno necesarias para que Eclipse reconozca Tomcat. Abre el archivo ~/.bashrc en un editor de texto:
-
-shell
-Copy code
+variables de entorno
 nano ~/.bashrc
-Agrega las siguientes líneas al final del archivo ~/.bashrc:
 
-shell
-Copy code
+escribir
 export CATALINA_HOME=/opt/apache-tomcat-7.0.110
 export PATH=$PATH:$CATALINA_HOME/bin
-Guarda el archivo y cierra el editor de texto.
 
-Aplica los cambios en el archivo ~/.bashrc ejecutando el siguiente comando:
-
-shell
-Copy code
+Guardar variables de entorno
 source ~/.bashrc
+
 Abre Eclipse y ve al menú "Window" (Ventana) > "Preferences" (Preferencias).
-
 En el panel de la izquierda, expande la opción "Server" (Servidor) y selecciona "Runtime Environments" (Entornos de ejecución).
-
 Haz clic en el botón "Add" (Agregar) para agregar un nuevo entorno de ejecución.
-
 Selecciona "Apache" en el panel de la izquierda y luego selecciona "Apache Tomcat v7.0" en el panel de la derecha. Haz clic en "Next" (Siguiente).
-
 En la ventana de configuración, ingresa la ubicación de Tomcat en el campo "Tomcat installation directory" (Directorio de instalación de Tomcat). En este caso, sería /opt/apache-tomcat-7.0.110.
-
 Haz clic en "Finish" (Finalizar) para completar la configuración.
-
 Ahora, Eclipse está configurado para utilizar Apache Tomcat 7 como servidor. Puedes crear proyectos web en Eclipse y desplegarlos en Tomcat para probar y ejecutar tus aplicaciones web.
