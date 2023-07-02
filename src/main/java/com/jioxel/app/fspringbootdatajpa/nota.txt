@@ -22,3 +22,67 @@ Selecciona "Apache" en el panel de la izquierda y luego selecciona "Apache Tomca
 En la ventana de configuración, ingresa la ubicación de Tomcat en el campo "Tomcat installation directory" (Directorio de instalación de Tomcat). En este caso, sería /opt/apache-tomcat-7.0.110.
 Haz clic en "Finish" (Finalizar) para completar la configuración.
 Ahora, Eclipse está configurado para utilizar Apache Tomcat 7 como servidor. Puedes crear proyectos web en Eclipse y desplegarlos en Tomcat para probar y ejecutar tus aplicaciones web.
+
+
+
+
+tomcat9
+
+wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.tar.gz
+
+tar -xvf apache-tomcat-9.0.54.tar.gz
+
+sudo mv apache-tomcat-9.0.54 /opt/
+nano ~/.bashrc
+
+export CATALINA_HOME=/opt/apache-tomcat-9.0.54
+export PATH=$PATH:$CATALINA_HOME/bin
+
+source ~/.bashrc
+
+
+
+
+configurar tomcat
+Para ajustar la configuración de los puertos en el archivo server.xml de Apache Tomcat, sigue los pasos a continuación:
+Abre un terminal en tu máquina Ubuntu.
+Navega hasta el directorio de instalación de Tomcat utilizando el comando cd. Por ejemplo, si has instalado Tomcat 7 en /opt/apache-tomcat-7.0.110 y Tomcat 9 en /opt/apache-tomcat-9.0.54, puedes utilizar los siguientes comandos:
+
+cd /opt/apache-tomcat-7.0.110/conf
+cd /opt/apache-tomcat-9.0.54/conf
+
+Abre el archivo server.xml en un editor de texto. Puedes utilizar el editor de tu elección, como nano o vim. Por ejemplo, utilizando nano:
+
+nano server.xml
+
+En el archivo server.xml, busca las líneas que definen los puertos para el conector HTTP (puerto 8080 por defecto) y el conector HTTPS (puerto 8443 por defecto). Estas líneas se ven así:
+
+<Connector port="8080" protocol="HTTP/1.1"
+            connectionTimeout="20000"
+            redirectPort="8443" />
+
+<Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+            maxThreads="150" scheme="https" secure="true"
+            clientAuth="false" sslProtocol="TLS" />
+
+Puedes modificar los puertos según tus necesidades. Por ejemplo, si deseas cambiar el puerto HTTP a 8081 y el puerto HTTPS a 8444, puedes editar las líneas de la siguiente manera:
+
+<Connector port="8081" protocol="HTTP/1.1"
+            connectionTimeout="20000"
+            redirectPort="8444" />
+
+<Connector port="8444" protocol="HTTP/1.1" SSLEnabled="true"
+            maxThreads="150" scheme="https" secure="true"
+            clientAuth="false" sslProtocol="TLS" />
+
+Guarda los cambios y cierra el editor de texto.
+
+Recuerda que debes reiniciar cada instancia de Tomcat después de realizar cambios en el archivo server.xml para que los cambios surtan efecto. Puedes reiniciar Tomcat utilizando el script catalina.sh ubicado en el directorio bin. Por ejemplo:
+
+cd /opt/apache-tomcat-7.0.110/bin
+./catalina.sh restart
+
+cd /opt/apache-tomcat-9.0.54/bin
+./catalina.sh restart
+
+Después de reiniciar, Tomcat utilizará los puertos especificados en el archivo server.xml. Asegúrate de ajustar la configuración adecuadamente para evitar conflictos de puertos entre Tomcat 7 y Tomcat 9.
