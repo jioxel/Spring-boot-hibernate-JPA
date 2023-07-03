@@ -20,6 +20,7 @@ En el panel de la izquierda, expande la opción "Server" (Servidor) y selecciona
 Haz clic en el botón "Add" (Agregar) para agregar un nuevo entorno de ejecución.
 Selecciona "Apache" en el panel de la izquierda y luego selecciona "Apache Tomcat v7.0" en el panel de la derecha. Haz clic en "Next" (Siguiente).
 En la ventana de configuración, ingresa la ubicación de Tomcat en el campo "Tomcat installation directory" (Directorio de instalación de Tomcat). En este caso, sería /opt/apache-tomcat-7.0.110.
+En la parte de seleccion de abajo tambien seleccionar tomcat
 Haz clic en "Finish" (Finalizar) para completar la configuración.
 Ahora, Eclipse está configurado para utilizar Apache Tomcat 7 como servidor. Puedes crear proyectos web en Eclipse y desplegarlos en Tomcat para probar y ejecutar tus aplicaciones web.
 
@@ -86,3 +87,21 @@ cd /opt/apache-tomcat-9.0.54/bin
 ./catalina.sh restart
 
 Después de reiniciar, Tomcat utilizará los puertos especificados en el archivo server.xml. Asegúrate de ajustar la configuración adecuadamente para evitar conflictos de puertos entre Tomcat 7 y Tomcat 9.
+
+
+
+NECESITAS CONFUGURAR ECLIPSE PARA QUE CORRA CON EL JDK DE JAVA 17
+En Eclipse
+ventana 
+-> Preferencias
+-> Java 
+-> installer jres 
+-> Add
+ e ir a la capeta -> /usr/lib/jvm
+ seleccionar open jdk 17 
+ y finish 
+ Seleccionar el que se acaba de agregar
+ Abajo de Intaller jres sale Execution enviroment, darle clic
+ apply
+ ir a Java se 17, clic y seleccionar el que se acaba de agreagar [perfect match]
+ apply and close 
